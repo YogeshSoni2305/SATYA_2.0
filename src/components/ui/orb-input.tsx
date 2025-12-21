@@ -19,10 +19,10 @@ export function OrbInput({ value, onChange, onSubmit, isLoading = false, classNa
 
   const placeholders = useMemo(
     () => [
-      "Enter a claim to fact-check...",
-      "Is this statement true?",
-      "Verify any claim instantly...",
-      "Paste text to analyze...",
+      "Ask anything...",
+      "What's on your mind?",
+      "How can I help you?",
+      "What would you like to know?",
     ],
     []
   )
@@ -93,31 +93,29 @@ export function OrbInput({ value, onChange, onSubmit, isLoading = false, classNa
   }
 
   return (
-    <div className={cn("relative w-full max-w-3xl mx-auto", className)}>
+    <div className={cn("relative", className)}>
       <div
         className={cn(
-          "flex items-center gap-4 p-4 md:p-6 bg-card/80 backdrop-blur-xl transition-all duration-300 ease-out rounded-full border border-border",
-          isFocused ? "shadow-xl scale-[1.02] border-primary/50 box-glow-primary" : "shadow-lg",
+          "flex items-center gap-4 p-6 bg-black shadow-lg transition-all duration-300 ease-out rounded-full border border-gray-300",
+          isFocused ? "shadow-xl scale-[1.02] border-gray-600" : "shadow-lg",
           isLoading && "opacity-80"
         )}
       >
         <div className="relative flex-shrink-0">
-          <div className={cn(
-            "w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden transition-all duration-300",
-            isLoading && "animate-pulse-glow"
-          )}>
-            <div className="w-full h-full bg-gradient-to-br from-primary via-accent to-primary rounded-full animate-glow-pulse" 
-                 style={{
-                   background: `radial-gradient(circle at 30% 30%, hsl(var(--primary)), hsl(var(--accent)), hsl(var(--primary)))`,
-                 }} 
+          <div className="w-16 h-16 rounded-full overflow-hidden transition-all duration-300 scale-100">
+            <img
+              src="https://media.giphy.com/media/26gsuUjoEBmLrNBxC/giphy.gif"
+              alt="Animated orb"
+              className="w-full h-full object-cover"
             />
           </div>
         </div>
 
-        <div className="w-px h-10 md:h-12 bg-border" />
+        <div className="w-px h-12 bg-gray-600" />
 
-        <div className="flex-1">
+        <div className="flex-1 w-[500px]">
           <input
+            data-testid="orb-input"
             type="text"
             value={value}
             onChange={(e) => onChange(e.target.value)}
@@ -126,8 +124,8 @@ export function OrbInput({ value, onChange, onSubmit, isLoading = false, classNa
             onKeyDown={handleKeyDown}
             disabled={isLoading}
             placeholder={`${displayedText}${isTyping ? "|" : ""}`}
-            aria-label="Enter claim to fact-check"
-            className="w-full text-base md:text-xl text-foreground placeholder-muted-foreground bg-transparent border-none outline-none font-light disabled:opacity-50"
+            aria-label="Ask a question"
+            className="w-full text-xl text-white placeholder-gray-400 bg-transparent border-none outline-none font-light disabled:opacity-50"
           />
         </div>
 
@@ -135,7 +133,7 @@ export function OrbInput({ value, onChange, onSubmit, isLoading = false, classNa
           <button
             onClick={onSubmit}
             disabled={isLoading}
-            className="flex-shrink-0 px-4 md:px-6 py-2 md:py-3 bg-primary text-primary-foreground font-medium rounded-full hover:opacity-90 transition-all disabled:opacity-50"
+            className="flex-shrink-0 px-6 py-3 bg-white text-black font-medium rounded-full hover:bg-gray-200 transition-all disabled:opacity-50"
           >
             {isLoading ? "Checking..." : "Verify"}
           </button>
