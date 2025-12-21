@@ -50,20 +50,16 @@ const Index = () => {
   }
 
   return (
-    <div className="relative min-h-screen overflow-hidden">
+    <div className="relative min-h-screen overflow-hidden bg-black">
       {/* Particles Background */}
       <Particles
         className="absolute inset-0 z-0"
-        quantity={120}
-        staticity={40}
-        ease={60}
-        color="#00d4ff"
-        size={0.6}
+        quantity={100}
+        staticity={50}
+        ease={50}
+        color="#ffffff"
+        size={0.4}
       />
-
-      {/* Gradient Overlays */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-background/90 to-background z-[1]" />
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-primary/5 rounded-full blur-3xl z-[1]" />
 
       {/* Navigation */}
       <NavBar items={navItems} />
@@ -79,11 +75,11 @@ const Index = () => {
             className="mb-12"
           >
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold mb-6">
-              <span className="text-foreground">Verify </span>
-              <span className="gradient-text">Truth</span>
-              <span className="text-foreground"> Instantly</span>
+              <span className="pointer-events-none whitespace-pre-wrap bg-gradient-to-b from-white to-gray-300/80 bg-clip-text text-center font-semibold leading-none text-transparent">
+                Satya 2.0
+              </span>
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto">
               Combat misinformation with AI-powered fact-checking. 
               Enter any claim and get verified results in seconds.
             </p>
@@ -109,7 +105,7 @@ const Index = () => {
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="text-destructive text-sm mb-4"
+              className="text-red-500 text-sm mb-4"
             >
               {error}
             </motion.p>
@@ -128,7 +124,7 @@ const Index = () => {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3 }}
                 onClick={handleNewCheck}
-                className="mt-6 px-6 py-3 text-sm font-medium text-primary border border-primary/30 rounded-full hover:bg-primary/10 transition-colors"
+                className="mt-6 px-6 py-3 text-sm font-medium text-white border border-gray-700 rounded-full hover:bg-white/10 transition-colors"
               >
                 Check Another Claim
               </motion.button>
@@ -149,15 +145,15 @@ const Index = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
-                  className="p-6 rounded-2xl bg-card/50 border border-border backdrop-blur-sm hover:border-primary/30 transition-colors group"
+                  className="p-6 rounded-2xl bg-black/50 border border-gray-800 backdrop-blur-sm hover:border-gray-600 transition-colors group"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                    <feature.icon className="w-6 h-6 text-primary" />
+                  <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center mb-4 group-hover:bg-white/20 transition-colors">
+                    <feature.icon className="w-6 h-6 text-white" />
                   </div>
-                  <h3 className="text-lg font-heading font-semibold text-foreground mb-2">
+                  <h3 className="text-lg font-heading font-semibold text-white mb-2">
                     {feature.title}
                   </h3>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-sm text-gray-400">
                     {feature.description}
                   </p>
                 </motion.div>
@@ -169,7 +165,7 @@ const Index = () => {
 
       {/* Footer */}
       <footer className="absolute bottom-0 left-0 right-0 z-10 py-6 text-center">
-        <p className="text-xs text-muted-foreground">
+        <p className="text-xs text-gray-600">
           Powered by AI • Verified by humans • Built for truth
         </p>
       </footer>

@@ -21,7 +21,6 @@ const verdictConfig = {
     colorClass: "text-success",
     bgClass: "bg-success/10",
     borderClass: "border-success/30",
-    glowClass: "box-glow-success",
   },
   false: {
     icon: XCircle,
@@ -29,7 +28,6 @@ const verdictConfig = {
     colorClass: "text-destructive",
     bgClass: "bg-destructive/10",
     borderClass: "border-destructive/30",
-    glowClass: "box-glow-destructive",
   },
   partially_true: {
     icon: AlertTriangle,
@@ -37,7 +35,6 @@ const verdictConfig = {
     colorClass: "text-warning",
     bgClass: "bg-warning/10",
     borderClass: "border-warning/30",
-    glowClass: "box-glow-warning",
   },
   unverifiable: {
     icon: Info,
@@ -45,7 +42,6 @@ const verdictConfig = {
     colorClass: "text-muted-foreground",
     bgClass: "bg-muted/50",
     borderClass: "border-border",
-    glowClass: "",
   },
 }
 
@@ -59,10 +55,8 @@ export function FactCheckResult({ result, claim }: FactCheckResultProps) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
       className={cn(
-        "w-full max-w-3xl mx-auto rounded-2xl border p-6 md:p-8 backdrop-blur-xl",
-        config.bgClass,
-        config.borderClass,
-        config.glowClass
+        "w-full max-w-3xl mx-auto rounded-2xl border p-6 md:p-8 backdrop-blur-xl bg-black/50",
+        config.borderClass
       )}
     >
       {/* Header */}
@@ -81,25 +75,25 @@ export function FactCheckResult({ result, claim }: FactCheckResultProps) {
       </div>
 
       {/* Original Claim */}
-      <div className="mb-6 p-4 rounded-xl bg-background/50 border border-border">
-        <p className="text-xs text-muted-foreground uppercase tracking-wider mb-2">
+      <div className="mb-6 p-4 rounded-xl bg-black/30 border border-gray-800">
+        <p className="text-xs text-gray-500 uppercase tracking-wider mb-2">
           Analyzed Claim
         </p>
-        <p className="text-foreground font-medium">{claim}</p>
+        <p className="text-white font-medium">{claim}</p>
       </div>
 
       {/* Explanation */}
       <div className="mb-6">
-        <p className="text-xs text-muted-foreground uppercase tracking-wider mb-2">
+        <p className="text-xs text-gray-500 uppercase tracking-wider mb-2">
           Analysis
         </p>
-        <p className="text-foreground/90 leading-relaxed">{result.explanation}</p>
+        <p className="text-gray-300 leading-relaxed">{result.explanation}</p>
       </div>
 
       {/* Sources */}
       {result.sources && result.sources.length > 0 && (
         <div>
-          <p className="text-xs text-muted-foreground uppercase tracking-wider mb-2">
+          <p className="text-xs text-gray-500 uppercase tracking-wider mb-2">
             Sources
           </p>
           <ul className="space-y-2">
@@ -109,7 +103,7 @@ export function FactCheckResult({ result, claim }: FactCheckResultProps) {
                   href={source}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-primary hover:underline text-sm break-all"
+                  className="text-white hover:text-gray-300 underline text-sm break-all"
                 >
                   {source}
                 </a>
