@@ -96,8 +96,8 @@ export function OrbInput({ value, onChange, onSubmit, isLoading = false, classNa
     <div className={cn("relative", className)}>
       <div
         className={cn(
-          "flex items-center gap-4 p-6 bg-black shadow-lg transition-all duration-300 ease-out rounded-full border border-gray-300",
-          isFocused ? "shadow-xl scale-[1.02] border-gray-600" : "shadow-lg",
+          "flex items-center gap-4 p-6 bg-card shadow-lg transition-all duration-300 ease-out rounded-full border border-border",
+          isFocused ? "shadow-xl scale-[1.02] border-primary/50" : "shadow-lg",
           isLoading && "opacity-80"
         )}
       >
@@ -111,7 +111,7 @@ export function OrbInput({ value, onChange, onSubmit, isLoading = false, classNa
           </div>
         </div>
 
-        <div className="w-px h-12 bg-gray-600" />
+        <div className="w-px h-12 bg-border" />
 
         <div className="flex-1 w-[500px]">
           <input
@@ -125,7 +125,7 @@ export function OrbInput({ value, onChange, onSubmit, isLoading = false, classNa
             disabled={isLoading}
             placeholder={`${displayedText}${isTyping ? "|" : ""}`}
             aria-label="Ask a question"
-            className="w-full text-xl text-white placeholder-gray-400 bg-transparent border-none outline-none font-light disabled:opacity-50"
+            className="w-full text-xl text-foreground placeholder-muted-foreground bg-transparent border-none outline-none font-light disabled:opacity-50"
           />
         </div>
 
@@ -133,7 +133,7 @@ export function OrbInput({ value, onChange, onSubmit, isLoading = false, classNa
           <button
             onClick={onSubmit}
             disabled={isLoading}
-            className="flex-shrink-0 px-6 py-3 bg-white text-black font-medium rounded-full hover:bg-gray-200 transition-all disabled:opacity-50"
+            className="flex-shrink-0 px-6 py-3 bg-primary text-primary-foreground font-medium rounded-full hover:opacity-90 transition-all disabled:opacity-50"
           >
             {isLoading ? "Checking..." : "Verify"}
           </button>
