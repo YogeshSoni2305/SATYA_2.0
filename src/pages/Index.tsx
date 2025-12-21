@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Shield, Zap, Globe, Home, Info, History } from "lucide-react"
+import { Shield, Zap, Globe, Home, Eye, History } from "lucide-react"
 import { useTheme } from "next-themes"
 import { Particles } from "@/components/ui/particles"
 import { OrbInput } from "@/components/ui/orb-input"
@@ -12,7 +12,7 @@ import { useFactCheck } from "@/hooks/useFactCheck"
 
 const navItems = [
   { name: "Home", url: "/", icon: Home },
-  { name: "About", url: "/about", icon: Info },
+  { name: "About", url: "/about", icon: Eye },
   { name: "History", url: "/history", icon: History },
 ]
 
