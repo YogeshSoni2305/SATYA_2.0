@@ -1,5 +1,23 @@
+
+
 import { useState, useRef } from "react"
-import { FactCheckResponse } from "@/components/FactCheckResult"
+
+/* Match EXACT backend response */
+export interface FactCheckResponse {
+  claim: string
+  verdict: string
+  confidence: number
+  conclusion: string
+  sources: {
+    title: string
+    url: string
+  }[]
+}
+
+interface ApiResponse {
+  status: string
+  results: FactCheckResponse[]
+}
 
 interface UseFactCheckReturn {
   result: FactCheckResponse | null
@@ -9,7 +27,7 @@ interface UseFactCheckReturn {
   reset: () => void
 }
 
-const MIN_LOADING_TIME = 3000 // 3 seconds minimum
+const MIN_LOADING_TIME = 3000 // 3 seconds
 
 export function useFactCheck(): UseFactCheckReturn {
   const [result, setResult] = useState<FactCheckResponse | null>(null)
@@ -27,51 +45,42 @@ export function useFactCheck(): UseFactCheckReturn {
       const formData = new FormData()
       formData.append("text", text)
 
-      const response = await fetch("http://localhost:8000/fact-check", {
-        method: "POST",
-        body: formData,
-      })
+      const response = await fetch(
+        "https://satya-pdiq.onrender.com/fact-check",
+      
+        {
+          method: "POST",
+          body: formData
+        }
+      )
 
       if (!response.ok) {
-        throw new Error(`Server error: ${response.status}`)
+        const errText = await response.text()
+        throw new Error(`Server error ${response.status}: ${errText}`)
       }
 
-      const data = await response.json()
-      
-      // Ensure minimum loading time
+      const data: ApiResponse = await response.json()
+      console.log("API RESPONSE:", data)
+
+      if (data.results?.length > 0) {
+        setResult(data.results[0])
+      } else {
+        setError("No verifiable claims found")
+      }
+
+    } catch (err) {
+      console.error("FACT CHECK ERROR:", err)
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Failed to check fact"
+      )
+    } finally {
       const elapsed = Date.now() - startTimeRef.current
       const remaining = MIN_LOADING_TIME - elapsed
-      
       if (remaining > 0) {
-        await new Promise(resolve => setTimeout(resolve, remaining))
+        await new Promise(res => setTimeout(res, remaining))
       }
-      
-      setResult(data)
-    } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : "Failed to check fact"
-      
-      // For demo purposes, show a mock result when the API is unavailable
-      if (errorMessage.includes("Failed to fetch") || errorMessage.includes("NetworkError")) {
-        setError("API unavailable - showing demo result")
-        
-        // Ensure minimum loading time for demo too
-        const elapsed = Date.now() - startTimeRef.current
-        const remaining = MIN_LOADING_TIME - elapsed
-        
-        if (remaining > 0) {
-          await new Promise(resolve => setTimeout(resolve, remaining))
-        }
-        
-        setResult({
-          verdict: "partially_true",
-          confidence: 0.75,
-          explanation: "This is a demo result. Connect to the fact-checking API at http://localhost:8000/fact-check to see real results. The API accepts POST requests with multipart/form-data containing a 'text' field.",
-          sources: ["https://example.com/source1", "https://example.com/source2"],
-        })
-      } else {
-        setError(errorMessage)
-      }
-    } finally {
       setIsLoading(false)
     }
   }
