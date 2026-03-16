@@ -1,0 +1,5 @@
+1:"$Sreact.fragment"
+2:I[97367,["/_next/static/chunks/b659ce5806881182.js","/_next/static/chunks/c3c41b6f97f986f5.js","/_next/static/chunks/009aedc78b0178e5.js","/_next/static/chunks/5ba2f669788af4a7.js","/_next/static/chunks/effd419e90e2846a.js"],"ViewportBoundary"]
+3:I[97367,["/_next/static/chunks/b659ce5806881182.js","/_next/static/chunks/c3c41b6f97f986f5.js","/_next/static/chunks/009aedc78b0178e5.js","/_next/static/chunks/5ba2f669788af4a7.js","/_next/static/chunks/effd419e90e2846a.js"],"MetadataBoundary"]
+4:"$Sreact.suspense"
+0:{"buildId":"EGs9-NzTmj0vde7BVmY3u","rsc":["$","$1","h",{"children":[["$","meta",null,{"name":"robots","content":"noindex"}],["$","$L2",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","div",null,{"hidden":true,"children":["$","$L3",null,{"children":["$","$4",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"Satya 2.0 - AI Fact Checker"}],["$","meta","1",{"name":"description","content":"Combat misinformation with AI-powered fact-checking."}]]}]}]}],null]}],"loading":null,"isPartial":false}
